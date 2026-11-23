@@ -1,60 +1,26 @@
-#include <iostream>
-#include <string>
-using namespace std;
+# Student Management System
 
-class Student {
-private:
-    int rollNo;
-    string name;
-    float marks;
+A simple C++ console mini-project demonstrating core Object-Oriented Programming (OOP) concepts including encapsulation, constructors, accessors/mutators, and arrays of objects.
 
-public:
-    Student(int r, string n, float m) {
-        rollNo = r;
-        name = n;
-        setMarks(m);
-    }
+## Concepts Implemented
 
-    int getRollNo() { return rollNo; }
-    string getName() { return name; }
-    float getMarks() { return marks; }
+- **Encapsulation**: Private data members (`rollNo`, `name`, `marks`) protect student records from direct external modification.
+- **Parameterized Constructor**: Initializes each `Student` object and reuses `setMarks()` for centralized validation.
+- **Getters & Validating Setter**:
+  - `getRollNo()`, `getName()`, and `getMarks()` provide read-only access.
+  - `setMarks(float m)` accepts values between `0` and `100`; invalid values print a warning and default to `0`.
+- **Member Function**: `display()` prints formatted student details.
+- **Object as Function Argument**: `printResult(Student s)` is a non-member function that evaluates pass/fail status (`>= 40` to pass) using public getters.
+- **Array of Objects**: Manages a batch of `Student` objects in `main()`, including a re-evaluation update.
 
-    void setMarks(float m) {
-        if (m >= 0 && m <= 100) {
-            marks = m;
-        } else {
-            cout << "Invalid marks for " << name << ", set to 0" << endl;
-            marks = 0;
-        }
-    }
+## Prerequisites
 
-    void display() {
-        cout << rollNo << " | " << name << " | " << marks << endl;
-    }
-};
+- A C++ compiler such as `g++` (MinGW-w64 on Windows, GCC/Clang on Linux/macOS).
 
-void printResult(Student s) {
-    cout << s.getName() << ": ";
-    if (s.getMarks() >= 40)
-        cout << "PASS" << endl;
-    else
-        cout << "FAIL" << endl;
-}
+## How to Compile and Run
 
-int main() {
-    Student batch[3] = {
-        Student(101, "Asha", 82),
-        Student(102, "Rahul", 35),
-        Student(103, "Meera", 105)
-    };
+1. Clone the repository or download `student_management.cpp`.
+2. Compile the source file:
 
-    for (int i = 0; i < 3; i++)
-        batch[i].display();
-
-    batch[1].setMarks(45);
-
-    for (int i = 0; i < 3; i++)
-        printResult(batch[i]);
-
-    return 0;
-}
+```bash
+g++ student_management.cpp -o student_management
